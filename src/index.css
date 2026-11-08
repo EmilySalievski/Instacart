@@ -117,6 +117,18 @@ code {
   --color-light-pink: #F7DAE5;
   --color-main-brown: #50392C;
   --color-cream: #FFFAF8;
+
+  --color-red: #FAC6C6;
+  --color-dark-red: #A73B3B;
+
+  --color-yellow: #FAF8C6;
+  --color-dark-yellow: #C7A73D;
+
+  --color-blue: #C6EFFA;
+  --color-dark-blue: #33689A;
+
+  --color-green: #C1F9C9;
+  --color-dark-green: #158226;
 }
 
 .polka-dot-bar {
