@@ -18,7 +18,14 @@ class WishlistItemSerializer(serializers.ModelSerializer):
             "url",
             "image",
             "days_to_wait",
+            "ready_date"
         ]
+
+        extra_kwargs = {
+            'days_to_wait': {'write_only': True},
+            'status': {'read_only': True},
+            'ready_date': {'read_only': True}
+        }
 
     def create(self, validated_data):
         days = validated_data["days_to_wait"]
@@ -34,6 +41,7 @@ class WishlistItemSerializer(serializers.ModelSerializer):
             url = validated_data.get("url"),
             image = validated_data.get("image"),
             ready_date = ready_date,
+            product = validated_data.get("product"),
         )
 
         return item

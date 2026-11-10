@@ -27,7 +27,7 @@ urlpatterns = [
     path('api/user/', UserView.as_view()),
     path('api/register/', UserRegistrationView.as_view()),
 
-    path('api/wishlistitem/', WishListItemView.as_view()),
+    path('api/wishlist/', WishListItemView.as_view()),
 
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),

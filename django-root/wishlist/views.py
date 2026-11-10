@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from .models import WishlistItem
 from .serializers import WishlistItemSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -22,7 +23,16 @@ class WishListItemView(APIView):
         return Response({
             "id": item.id,
         }, status=status.HTTP_201_CREATED)
-        
+
+    def get(self, request):
+        user = request.user.id
+
+        queryset = WishlistItem.objects.filter(user__id=user)
+
+        data = WishlistItemSerializer(queryset, many=True).data
+
+        return Response(data, status=status.HTTP_200_OK)
+
 
 
 
