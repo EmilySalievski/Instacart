@@ -3,7 +3,10 @@ dist/
 .env
 
 # Python
-__pycache__/
+*.__pycache__/
 *.py[cod]
 
 instacart/
+
+django-root/db.sqlite3
+django-root/accounts/__pycache__/models.cpython-314.pyc

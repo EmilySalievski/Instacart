@@ -24,7 +24,7 @@ class UserRegistrationView(APIView):
     def post(self, request):
         profile = request.data
 
-        data = UserRegistrationSerializer(profile)
+        data = UserRegistrationSerializer(data=profile)
 
         if not data.is_valid():
             return Response(status=status.HTTP_400_BAD_REQUEST, data=data.errors)
