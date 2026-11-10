@@ -18,9 +18,17 @@ from django.contrib import admin
 from django.urls import path
 
 from accounts.views import UserView, UserRegistrationView
+from wishlist.views import WishListItemView
+
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', UserView.as_view()),
-    path('api/register/', UserRegistrationView.as_view())
+    path('api/register/', UserRegistrationView.as_view()),
+
+    path('api/wishlistitem/', WishListItemView.as_view()),
+
+    path('api/token/', TokenObtainPairView.as_view()),
+    path('api/token/refresh/', TokenRefreshView.as_view()),
 ]
