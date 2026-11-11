@@ -46,9 +46,28 @@ class WishlistItemDetailView(APIView):
 
         return Response(data, status=status.HTTP_200_OK)
 
+    def patch(self, request, pk):
+        user_id = request.user.id
 
+        queryset = get_object_or_404(WishlistItem, user__id=user_id, id=pk)
+        data = WishlistItemSerializer(queryset, data=request.data, partial=True)
 
-        
+        if not data.is_valid():
+            return Response(data=data.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        item = data.save()
+
+        new_data = WishlistItemSerializer(item).data
+
+        return Response(new_data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk):
+        user_id = request.user.id
+
+        item = get_object_or_404(WishlistItem, user__id=user_id, id=pk).delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
         
 
