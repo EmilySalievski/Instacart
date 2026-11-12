@@ -1,7 +1,18 @@
 import dih from '../assets/dih.png'
 import SearchBar from './SearchBar';
+import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
+
+
+    //TODO: change before deploying
+    const token = localStorage.getItem('access');
+
+    const navigate = useNavigate();
+    function goToLogin(){
+        navigate('login/');
+    };
+
     return (
         <div className='flex flex-col gap-0'>
             <div className='flex h-20 gap-4 pt-14 pb-10 px-10 items-center bg-main-brown'>
@@ -18,9 +29,12 @@ function Navbar() {
                 <button type="button" className="rounded-xl bg-transparent px-4 py-2.5 text-2xl font-semibold font-judson italic text-cream hover:text-hover-text hover:scale-125 duration-500">
                     Explore
                 </button>
-                <button type="button" className="rounded-xl bg-transparent px-4 py-2.5 text-2xl font-semibold font-judson italic text-cream hover:text-hover-text hover:scale-125 duration-500">
+                {!token && <button onClick={goToLogin} type="button" className="rounded-xl bg-transparent px-4 py-2.5 text-2xl font-semibold font-judson italic text-cream hover:text-hover-text hover:scale-125 duration-500">
+                    Login
+                </button>}
+                {token && <button type="button" className="rounded-xl bg-transparent px-4 py-2.5 text-2xl font-semibold font-judson italic text-cream hover:text-hover-text hover:scale-125 duration-500">
                     Profile
-                </button>
+                </button>}
             </div>
             <div className='polka-dot-bar'/>
         </div>
