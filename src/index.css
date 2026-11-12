@@ -70,7 +70,6 @@ h1 {
   font-family: "Judson", serif;
   font-style: italic;
   font-size: 64px;
-  color: var(--color-cream);
 
 }
 
@@ -115,6 +114,8 @@ code {
   --color-hover-text: #FFEDF6;
   --color-hover-text: #F291BD;
   --color-light-pink: #F7DAE5;
+  --color-dark-pink: #fa91bd;
+  --color-darker-pink: #871c49;
   --color-main-brown: #50392C;
   --color-cream: #FFFAF8;
 

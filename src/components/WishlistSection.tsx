@@ -7,15 +7,23 @@ type WishlistItemData = components["schemas"]["WishlistItem"][];
 function WishlistSection(){
     const [items, setItems] = useState<WishlistItemData>([]);
 
+    // TODO: change before deploying
+    const token = localStorage.getItem('access')
+
     useEffect(() => {
         async function getWishlist() {
-            const response = await fetch("http://127.0.0.1:8000/api/wishlist/");
+            if (!token) return;
+            const response = await fetch("http://127.0.0.1:8000/api/wishlist/", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const data = await response.json();
             setItems(data)
         }
 
         getWishlist();
-    }, []);
+    }, [token]);
 
     return (
         <div className='px-10'>

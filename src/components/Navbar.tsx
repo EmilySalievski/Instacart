@@ -6,7 +6,7 @@ function Navbar() {
         <div className='flex flex-col gap-0'>
             <div className='flex h-20 gap-4 pt-14 pb-10 px-10 items-center bg-main-brown'>
                 <img  src={dih} className='w-10 h-10 rounded-xl'/>
-                <h1 className='text-xl m-0'>Instacart</h1>
+                <h1 className='text-xl m-0 text-cream'>Instacart</h1>
 
                 <div className="flex-1 min-w-0 flex justify-center">
                     <SearchBar className="w-full" />

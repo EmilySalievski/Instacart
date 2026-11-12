@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import Navbar from './components/Navbar'
-import WishlistSection from './components/WishlistSection'
+import Login from './components/Login'
+import Homepage from './components/Homepage'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div className='bg-cream'>
-      <Navbar/>
-      <WishlistSection/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage/>}/>
+        <Route path="/login/" element={<Login/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
