@@ -1,5 +1,5 @@
-import Login from './components/Login'
-import Homepage from './components/Homepage'
+import Login from './pages/Login'
+import Homepage from './pages/Homepage'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {

@@ -1,5 +1,5 @@
-import Navbar from './Navbar'
-import WishlistSection from './WishlistSection'
+import Navbar from '../components/Navbar'
+import WishlistSection from '../components/WishlistSection'
 
 function Homepage() {
   return (
