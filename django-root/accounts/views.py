@@ -3,23 +3,39 @@ from .serializers import UserSerializer, UserRegistrationSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework import status, serializers
+from drf_spectacular.utils import extend_schema, inline_serializer
 
 # Create your views here.
 class UserView(APIView):
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        responses=UserSerializer, 
+        description='Return logged in user'
+    )
     def get(self, request):
         profile = request.user
 
         result = UserSerializer(profile).data
-        return Response({
-            "me": result
-        })
+        return Response(result)
 
 class UserRegistrationView(APIView):
     permission_classes = [AllowAny]
 
+    @extend_schema(
+        request=UserRegistrationSerializer, 
+        responses={
+            201: inline_serializer(
+                name='UserRegistrationResponse',
+                fields={
+                    'id': serializers.IntegerField()
+                }
+            ),
+            400: None,
+        }, 
+        description='Register a user'
+    )
     def post(self, request):
         profile = request.data
 

@@ -2,9 +2,15 @@ from rest_framework import serializers
 from .models import Product, WishlistItem
 from datetime import timedelta
 from django.utils import timezone
+from drf_spectacular.utils import extend_schema_field
 
 class WishlistItemSerializer(serializers.ModelSerializer):
     days_to_wait = serializers.IntegerField(default=7)
+    days_remaining = serializers.SerializerMethodField()
+
+    @extend_schema_field(serializers.IntegerField())
+    def get_days_remaining(self, item):
+        return (item.ready_date - timezone.localdate()).days
 
     class Meta:
         model = WishlistItem
@@ -18,7 +24,8 @@ class WishlistItemSerializer(serializers.ModelSerializer):
             "url",
             "image",
             "days_to_wait",
-            "ready_date"
+            "ready_date",
+            "days_remaining"
         ]
 
         extra_kwargs = {

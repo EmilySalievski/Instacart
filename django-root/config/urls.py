@@ -22,6 +22,12 @@ from wishlist.views import WishListItemView, WishlistItemDetailView
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+    SpectacularRedocView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user/', UserView.as_view()),
@@ -30,6 +36,12 @@ urlpatterns = [
     path('api/wishlist/', WishListItemView.as_view()),
     path('api/wishlist/<int:pk>/', WishlistItemDetailView.as_view()),
 
+    # JWT Token
     path('api/token/', TokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
+
+    # Spectacular
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]

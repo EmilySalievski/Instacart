@@ -4,13 +4,27 @@ from .models import WishlistItem
 from .serializers import WishlistItemSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, serializers
 from django.shortcuts import get_object_or_404
+from drf_spectacular.utils import extend_schema, inline_serializer
 
 # Create your views here.
 class WishListItemView(APIView):
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        request=WishlistItemSerializer,
+        responses={
+            201: inline_serializer(
+                name='WishlistItemCreateResponse',
+                fields={
+                    'id': serializers.IntegerField()
+                }
+            ),
+            400: None,
+        }, 
+        description='Create wishlist item'
+    )
     def post(self, request):
         user = request.user
 
@@ -25,6 +39,10 @@ class WishListItemView(APIView):
             "id": item.id,
         }, status=status.HTTP_201_CREATED)
 
+    @extend_schema(
+        responses=WishlistItemSerializer(many=True),
+        description='Get entire wishlist'
+    )
     def get(self, request):
         user_id = request.user.id
 
@@ -37,6 +55,10 @@ class WishListItemView(APIView):
 class WishlistItemDetailView(APIView):
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        responses=WishlistItemSerializer,
+        description='Get wishlist item'
+    )
     def get(self, request, pk):
         user_id = request.user.id
 
@@ -45,7 +67,12 @@ class WishlistItemDetailView(APIView):
         data = WishlistItemSerializer(queryset).data
 
         return Response(data, status=status.HTTP_200_OK)
-
+    
+    @extend_schema(
+        request=WishlistItemSerializer,
+        responses=WishlistItemSerializer,
+        description='Update a wishlist item'
+    )
     def patch(self, request, pk):
         user_id = request.user.id
 
@@ -61,6 +88,13 @@ class WishlistItemDetailView(APIView):
 
         return Response(new_data, status=status.HTTP_200_OK)
 
+    @extend_schema(
+        responses={
+            204: None,
+            404: None,
+        }, 
+        description='Delete a wishlist item'
+    )
     def delete(self, request, pk):
         user_id = request.user.id
 
