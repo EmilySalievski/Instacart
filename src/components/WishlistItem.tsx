@@ -10,7 +10,7 @@ function WishlistItem({item, id}: {item: WishlistItemData, id: number}) {
         <div className='w-1/3 h-96 rounded-2xl bg-white border-2 border-main-brown overflow-hidden'>
             <div className='h-1/2 relative'>
                 <img src={item.image ? item.image : blank} className='w-full h-full object-cover'/>
-                <StatusTag className='absolute top-3 right-3' stat={item.status} />
+                <StatusTag className='absolute top-3 right-3' stat={item.status} days={item.days_remaining}/>
             </div>
 
             <div className='px-2 py-2'>

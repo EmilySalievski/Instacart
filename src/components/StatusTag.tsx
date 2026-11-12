@@ -1,6 +1,6 @@
 type Status = "READY" | "RESISTED" | "BOUGHT" | null;
 
-function StatusTag({className='', stat}: {stat: Status, className?: string}) {
+function StatusTag({className='', stat, days}: {stat: Status, className?: string, days: number}) {
 
     const statusDict = {
         READY: "bg-blue border-2 border-dark-blue text-dark-blue",
@@ -10,7 +10,7 @@ function StatusTag({className='', stat}: {stat: Status, className?: string}) {
     }
     return (
         <div className={`${className} rounded-xl ${statusDict[stat ?? "WAITING"]} px-1`}>
-            {stat}
+            {stat ?? days.toString() + ' days'}
         </div>
     )
 }
