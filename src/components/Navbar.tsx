@@ -8,7 +8,9 @@ function Navbar() {
                 <img  src={dih} className='w-10 h-10 rounded-xl'/>
                 <h1 className='text-xl m-0'>Instacart</h1>
 
-                <SearchBar className="absolute left-1/2 -translate-x-1/2" />
+                <div className="flex-1 min-w-0 flex justify-center">
+                    <SearchBar className="w-full" />
+                </div>
                 
                 <button type="button" className="ml-auto rounded-xl bg-transparent px-4 py-2.5 text-2xl font-judson italic text-cream hover:text-hover-text hover:scale-125 duration-500">
                     My List
