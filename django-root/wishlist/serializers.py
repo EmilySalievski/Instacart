@@ -15,6 +15,7 @@ class WishlistItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = WishlistItem
         fields = [
+            "id",
             "status",
             "product",
             "name",

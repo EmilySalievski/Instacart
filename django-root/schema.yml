@@ -371,6 +371,9 @@ components:
     PatchedWishlistItem:
       type: object
       properties:
+        id:
+          type: integer
+          readOnly: true
         status:
           readOnly: true
           nullable: true
@@ -518,6 +521,9 @@ components:
     WishlistItem:
       type: object
       properties:
+        id:
+          type: integer
+          readOnly: true
         status:
           readOnly: true
           nullable: true
@@ -563,6 +569,7 @@ components:
           readOnly: true
       required:
       - days_remaining
+      - id
       - name
       - price
       - ready_date

@@ -144,6 +144,7 @@ export interface components {
         /** @enum {unknown} */
         NullEnum: null;
         PatchedWishlistItem: {
+            readonly id?: number;
             readonly status?: (components["schemas"]["StatusEnum"] | components["schemas"]["NullEnum"]) | null;
             product?: number | null;
             name?: string;
@@ -197,6 +198,7 @@ export interface components {
             id: number;
         };
         WishlistItem: {
+            readonly id: number;
             readonly status: (components["schemas"]["StatusEnum"] | components["schemas"]["NullEnum"]) | null;
             product?: number | null;
             name: string;
