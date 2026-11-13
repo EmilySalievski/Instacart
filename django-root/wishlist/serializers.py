@@ -26,7 +26,8 @@ class WishlistItemSerializer(serializers.ModelSerializer):
             "image",
             "days_to_wait",
             "ready_date",
-            "days_remaining"
+            "days_remaining",
+            "currency",
         ]
 
         extra_kwargs = {
@@ -50,6 +51,7 @@ class WishlistItemSerializer(serializers.ModelSerializer):
             image = validated_data.get("image"),
             ready_date = ready_date,
             product = validated_data.get("product"),
+            currency = validated_data.get("currency"),
         )
 
         return item

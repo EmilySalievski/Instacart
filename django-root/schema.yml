@@ -385,17 +385,18 @@ components:
           nullable: true
         name:
           type: string
-          maxLength: 30
+          maxLength: 1000
         brand:
           type: string
-          maxLength: 30
+          maxLength: 100
         price:
           type: string
           format: decimal
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
         desc:
           type: string
-          maxLength: 100
+          maxLength: 1000
         url:
           oneOf:
           - type: string
@@ -417,6 +418,9 @@ components:
         days_remaining:
           type: integer
           readOnly: true
+        currency:
+          type: string
+          maxLength: 3
     StatusEnum:
       enum:
       - BOUGHT
@@ -484,6 +488,9 @@ components:
         bio:
           type: string
           maxLength: 100
+        default_currency:
+          type: string
+          maxLength: 3
       required:
       - id
       - username
@@ -535,17 +542,18 @@ components:
           nullable: true
         name:
           type: string
-          maxLength: 30
+          maxLength: 1000
         brand:
           type: string
-          maxLength: 30
+          maxLength: 100
         price:
           type: string
           format: decimal
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
         desc:
           type: string
-          maxLength: 100
+          maxLength: 1000
         url:
           oneOf:
           - type: string
@@ -567,11 +575,13 @@ components:
         days_remaining:
           type: integer
           readOnly: true
+        currency:
+          type: string
+          maxLength: 3
       required:
       - days_remaining
       - id
       - name
-      - price
       - ready_date
       - status
     WishlistItemCreateResponse:

@@ -150,7 +150,7 @@ export interface components {
             name?: string;
             brand?: string;
             /** Format: decimal */
-            price?: string;
+            price?: string | null;
             desc?: string;
             url?: string;
             /** Format: uri */
@@ -160,6 +160,7 @@ export interface components {
             /** Format: date */
             readonly ready_date?: string;
             readonly days_remaining?: number;
+            currency?: string;
         };
         /**
          * @description * `BOUGHT` - Bought
@@ -186,6 +187,7 @@ export interface components {
             /** Format: uri */
             profile_pic?: string | null;
             bio?: string;
+            default_currency?: string;
         };
         UserRegistration: {
             /** @description Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
@@ -204,7 +206,7 @@ export interface components {
             name: string;
             brand?: string;
             /** Format: decimal */
-            price: string;
+            price?: string | null;
             desc?: string;
             url?: string;
             /** Format: uri */
@@ -214,6 +216,7 @@ export interface components {
             /** Format: date */
             readonly ready_date: string;
             readonly days_remaining: number;
+            currency?: string;
         };
         WishlistItemCreateResponse: {
             id: number;

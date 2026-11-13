@@ -9,7 +9,8 @@ class UserSerializer(serializers.ModelSerializer):
             "username",
             "email",
             "profile_pic",
-            "bio"
+            "bio",
+            "default_currency"
         ]
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
