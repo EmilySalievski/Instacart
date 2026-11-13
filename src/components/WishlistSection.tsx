@@ -26,7 +26,7 @@ function WishlistSection(){
     }, [token]);
 
     return (
-        <div className='px-10'>
+        <div className='px-10 flex flex-row gap-6'>
             {items.map(item => (
                 <WishlistItem id={item.id} item={item}/>
             ))}
