@@ -4,16 +4,15 @@ import AddWishlistItem from '../components/AddWishlistItem'
 import WishlistSection from '../components/WishlistSection'
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
-import type { components } from "../api/schema";
+import type { WishlistItemData } from "../types";
 
 function Homepage() {
   const [formIsOpen, setFormIsOpen] = useState<boolean>(false)
 
       // TODO: change before deploying
     const token = localStorage.getItem('access')
-
-    type WishlistItemData = components["schemas"]["WishlistItem"][];
-    const [items, setItems] = useState<WishlistItemData>()
+    
+    const [items, setItems] = useState<WishlistItemData[]>()
 
     async function getWishlist() {
         if (!token) return;

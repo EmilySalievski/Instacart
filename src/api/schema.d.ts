@@ -150,7 +150,7 @@ export interface components {
             name?: string;
             brand?: string;
             /** Format: decimal */
-            price?: string | null;
+            price?: string;
             desc?: string;
             url?: string;
             /** Format: uri */
@@ -206,7 +206,7 @@ export interface components {
             name: string;
             brand?: string;
             /** Format: decimal */
-            price?: string | null;
+            price: string;
             desc?: string;
             url?: string;
             /** Format: uri */

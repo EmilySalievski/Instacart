@@ -1,11 +1,9 @@
 import blank from '../assets/blank.png'
 import Pricetag from '../assets/Pricetag.png'
 import StatusTag from './StatusTag'
-import type { components } from "../api/schema";
+import type { WishlistItemData } from "../types";
 
-type WishlistItemData= components["schemas"]["WishlistItem"];
-
-function WishlistItem({item, id}: {item: WishlistItemData, id: number}) {
+function WishlistItem({item}: {item: WishlistItemData}) {
     return (
         <div className='w-1/3 h-96 rounded-2xl bg-white border-2 border-main-brown overflow-hidden'>
             <div className='h-1/2 relative'>

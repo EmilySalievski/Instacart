@@ -1,10 +1,7 @@
 import WishlistItem from "./WishlistItem";
-import type { components } from "../api/schema";
-import { useEffect, useState } from "react";
+import type { WishlistItemData } from "../types";
 
-type WishlistItemData = components["schemas"]["WishlistItem"][];
-
-function WishlistSection({items}: {items?: WishlistItemData}){
+function WishlistSection({items}: {items?: WishlistItemData[]}){
 
     return (
         <div className='px-10 flex flex-row gap-6'>

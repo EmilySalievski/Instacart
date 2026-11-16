@@ -393,7 +393,6 @@ components:
           type: string
           format: decimal
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
-          nullable: true
         desc:
           type: string
           maxLength: 1000
@@ -550,7 +549,6 @@ components:
           type: string
           format: decimal
           pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
-          nullable: true
         desc:
           type: string
           maxLength: 1000
@@ -582,6 +580,7 @@ components:
       - days_remaining
       - id
       - name
+      - price
       - ready_date
       - status
     WishlistItemCreateResponse:
