@@ -5,6 +5,7 @@ import WishlistSection from '../components/WishlistSection'
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
 import type { WishlistItemData } from "../types";
+import { useNavigate } from 'react-router-dom';
 
 function Homepage() {
   const [formIsOpen, setFormIsOpen] = useState<boolean>(false)
@@ -12,6 +13,7 @@ function Homepage() {
       // TODO: change before deploying
     const token = localStorage.getItem('access')
     
+    const navigate = useNavigate()
     const [items, setItems] = useState<WishlistItemData[]>()
 
     async function getWishlist() {
@@ -22,6 +24,11 @@ function Homepage() {
             }
         });
         const data = await response.json();
+
+        if (response.status === 401){
+          navigate('/login')
+          return
+        }
         setItems(data)
     }
 
