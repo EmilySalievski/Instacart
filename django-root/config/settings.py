@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'devtools',
     'drf_spectacular',
     'corsheaders',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

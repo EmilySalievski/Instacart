@@ -13,6 +13,8 @@ function AddWishlistItem({className='', onClose}: {onClose: () => void, classNam
     const [daysToWait, setDaysToWait] = useState('7')
     const [imageFile, setImageFile] = useState<File | null>(null)
 
+    const [errors, setErrors] = useState<Record<string, string[]>>({})
+
     async function createItem(){
         // TODO: change before deploying
         const token = localStorage.getItem('access')
@@ -36,9 +38,10 @@ function AddWishlistItem({className='', onClose}: {onClose: () => void, classNam
         const data = await response.json()
 
          if (response.ok) {
+            setErrors({})
             onClose()
-        } else {
-            console.log(data)
+        } else if (response.status === 400) {
+            setErrors(data)
         }
     }
 
@@ -104,6 +107,9 @@ function AddWishlistItem({className='', onClose}: {onClose: () => void, classNam
                     onChange={(event) => setName(event.target.value)}
                     className="rounded-2xl border-light-pink border-2 focus:outline-none focus:border-dark-pink w-full text-sm py-2 px-3 border-2 placeholder:text-main-brown"
                 />
+                {errors.name && (
+                    <p className='text-xs text-red-400 pt-1'>{errors.name.join(' ')}</p>
+                )}
             </div>
 
             <div>
@@ -160,6 +166,9 @@ function AddWishlistItem({className='', onClose}: {onClose: () => void, classNam
                         onChange={(event) => setPrice(event.target.value)}
                         className="rounded-2xl border-light-pink border-2 focus:outline-none focus:border-dark-pink w-full text-sm py-2 px-3 border-2 placeholder:text-main-brown"
                     />
+                    {errors.price && (
+                        <p className='text-xs text-red-400 pt-1'>{errors.price.join(' ')}</p>
+                    )}
                 </div>
                 <div>
                     <div className='flex items-center gap-2 pb-2'>
