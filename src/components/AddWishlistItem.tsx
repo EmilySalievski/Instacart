@@ -3,7 +3,7 @@ import {CloseOutlined} from '@ant-design/icons';
 import { Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 
-function AddWishlistItem({className='', onClose}: {onClose: () => void, className?: string}) {
+function AddWishlistItem({className='', onClose, onCreate}: {onCreate: () => void, onClose: () => void, className?: string}) {
     const [url, setUrl] = useState('')
     const [name, setName] = useState('')
     const [desc, setDesc] = useState('')
@@ -40,6 +40,7 @@ function AddWishlistItem({className='', onClose}: {onClose: () => void, classNam
          if (response.ok) {
             setErrors({})
             onClose()
+            onCreate()
         } else if (response.status === 400) {
             setErrors(data)
         }

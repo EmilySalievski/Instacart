@@ -3,15 +3,37 @@ import Navbar from '../components/Navbar'
 import AddWishlistItem from '../components/AddWishlistItem'
 import WishlistSection from '../components/WishlistSection'
 import { PlusCircleOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import type { components } from "../api/schema";
 
 function Homepage() {
   const [formIsOpen, setFormIsOpen] = useState<boolean>(false)
 
+      // TODO: change before deploying
+    const token = localStorage.getItem('access')
+
+    type WishlistItemData = components["schemas"]["WishlistItem"][];
+    const [items, setItems] = useState<WishlistItemData>()
+
+    async function getWishlist() {
+        if (!token) return;
+        const response = await fetch("http://127.0.0.1:8000/api/wishlist/", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const data = await response.json();
+        setItems(data)
+    }
+
+    useEffect(() => {
+        getWishlist();
+    }, [token]);
+
   return (
     <div className='bg-cream min-h-screen'>
       <Navbar />
-      <WishlistSection />
+      <WishlistSection items={items} />
 
       <button
         onClick={() => setFormIsOpen(true)}
@@ -31,6 +53,7 @@ function Homepage() {
 
       <AddWishlistItem
         onClose={() => setFormIsOpen(false)}
+        onCreate={() => getWishlist()}
         className={`top-1/2 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out ${
           formIsOpen
             ? 'opacity-100 -translate-y-1/2 scale-100'
