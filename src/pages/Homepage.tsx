@@ -39,7 +39,7 @@ function Homepage() {
   return (
     <div className='bg-cream min-h-screen'>
       <Navbar />
-      <WishlistSection items={items} />
+      <WishlistSection items={items} onCreate={() => getWishlist()} />
 
       <button
         onClick={() => setFormIsOpen(true)}

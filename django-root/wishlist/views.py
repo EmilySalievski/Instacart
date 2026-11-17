@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .models import WishlistItem
+from .models import WishlistItem, Status
 from .serializers import WishlistItemSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework import status, serializers
 from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema, inline_serializer
+from django.utils import timezone
 
 # Create your views here.
 class WishListItemView(APIView):
@@ -47,6 +48,8 @@ class WishListItemView(APIView):
         user_id = request.user.id
 
         queryset = WishlistItem.objects.filter(user__id=user_id)
+
+        queryset.filter(ready_date__lte=timezone.localdate(), status=None).update(status=Status.READY)
 
         data = WishlistItemSerializer(queryset, many=True).data
 

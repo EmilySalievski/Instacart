@@ -142,10 +142,12 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         /** @enum {unknown} */
+        BlankEnum: "";
+        /** @enum {unknown} */
         NullEnum: null;
         PatchedWishlistItem: {
             readonly id?: number;
-            readonly status?: (components["schemas"]["StatusEnum"] | components["schemas"]["NullEnum"]) | null;
+            status?: (components["schemas"]["StatusEnum"] | components["schemas"]["BlankEnum"] | components["schemas"]["NullEnum"]) | null;
             product?: number | null;
             name?: string;
             brand?: string;
@@ -165,9 +167,10 @@ export interface components {
         /**
          * @description * `BOUGHT` - Bought
          *     * `RESISTED` - Resisted
+         *     * `READY` - Ready
          * @enum {string}
          */
-        StatusEnum: "BOUGHT" | "RESISTED";
+        StatusEnum: "BOUGHT" | "RESISTED" | "READY";
         TokenObtainPair: {
             username: string;
             password: string;
@@ -201,7 +204,7 @@ export interface components {
         };
         WishlistItem: {
             readonly id: number;
-            readonly status: (components["schemas"]["StatusEnum"] | components["schemas"]["NullEnum"]) | null;
+            status?: (components["schemas"]["StatusEnum"] | components["schemas"]["BlankEnum"] | components["schemas"]["NullEnum"]) | null;
             product?: number | null;
             name: string;
             brand?: string;

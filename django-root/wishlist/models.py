@@ -4,6 +4,7 @@ from django.db import models
 class Status(models.TextChoices):
         BOUGHT = "BOUGHT", "Bought"
         RESISTED = "RESISTED", "Resisted"
+        READY = "READY", "Ready"
         
 class WishlistItem(models.Model):
     user = models.ForeignKey(to='accounts.User', on_delete=models.CASCADE)

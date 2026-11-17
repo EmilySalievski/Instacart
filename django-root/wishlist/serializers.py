@@ -32,7 +32,6 @@ class WishlistItemSerializer(serializers.ModelSerializer):
 
         extra_kwargs = {
             'days_to_wait': {'write_only': True},
-            'status': {'read_only': True},
             'ready_date': {'read_only': True}
         }
 

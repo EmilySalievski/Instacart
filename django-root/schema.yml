@@ -365,6 +365,9 @@ paths:
           description: No response body
 components:
   schemas:
+    BlankEnum:
+      enum:
+      - ''
     NullEnum:
       enum:
       - null
@@ -375,10 +378,10 @@ components:
           type: integer
           readOnly: true
         status:
-          readOnly: true
           nullable: true
           oneOf:
           - $ref: '#/components/schemas/StatusEnum'
+          - $ref: '#/components/schemas/BlankEnum'
           - $ref: '#/components/schemas/NullEnum'
         product:
           type: integer
@@ -424,10 +427,12 @@ components:
       enum:
       - BOUGHT
       - RESISTED
+      - READY
       type: string
       description: |-
         * `BOUGHT` - Bought
         * `RESISTED` - Resisted
+        * `READY` - Ready
     TokenObtainPair:
       type: object
       properties:
@@ -531,10 +536,10 @@ components:
           type: integer
           readOnly: true
         status:
-          readOnly: true
           nullable: true
           oneOf:
           - $ref: '#/components/schemas/StatusEnum'
+          - $ref: '#/components/schemas/BlankEnum'
           - $ref: '#/components/schemas/NullEnum'
         product:
           type: integer
@@ -582,7 +587,6 @@ components:
       - name
       - price
       - ready_date
-      - status
     WishlistItemCreateResponse:
       type: object
       properties:
