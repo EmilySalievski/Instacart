@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar'
 import AddWishlistItem from '../components/AddWishlistItem'
 import WishlistSection from '../components/WishlistSection'
+import SavingsSection from '../components/SavingsSection'
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
 import type { WishlistItemData } from "../types";
@@ -39,7 +40,14 @@ function Homepage() {
   return (
     <div className='bg-cream min-h-screen'>
       <Navbar />
-      <WishlistSection items={items} onCreate={() => getWishlist()} />
+      <div className='flex gap-9 px-10'>
+        <div className='flex-1'>
+          <WishlistSection items={items} onCreate={() => getWishlist()} />
+        </div>
+        <div className='w-1/5'>
+          <SavingsSection/>
+        </div>
+      </div>
 
       <button
         onClick={() => setFormIsOpen(true)}

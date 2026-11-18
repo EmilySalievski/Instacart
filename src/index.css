@@ -70,9 +70,14 @@ h1 {
   font-family: "Judson", serif;
   font-style: italic;
   font-size: 64px;
-
 }
 
+h3 {
+  font-family: "Judson", serif;
+  font-style: italic;
+  font-size: 40px;
+  color:
+}
 
 h2 {
   font-family: var(--heading);
